@@ -54,7 +54,7 @@ GigShield is an **AI-powered parametric micro-insurance platform** exclusively d
 
 ## 3. Persona & Scenario Walkthroughs
 
-### 👤 Primary Persona: Ravi, Food Delivery Partner (Zomato)
+### Primary Persona: Ravi, Food Delivery Partner (Zomato)
 
 - **Location:** Bengaluru, Koramangala zone
 - **Average earnings:** ₹900/day, ~₹6,300/week
