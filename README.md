@@ -231,6 +231,8 @@ A trigger payout requires **all three conditions** to be true:
 2. Worker's GPS confirms presence in the affected zone during the disruption window
 3. Worker's delivery activity drops significantly (fraud detection cross-check)
 
+<img width="1548" height="494" alt="image" src="https://github.com/user-attachments/assets/426d08c0-76e3-4d2a-a8c7-ed7ff9f7bb6c" />
+
 ---
 
 ## 7. AI/ML Integration Plan
