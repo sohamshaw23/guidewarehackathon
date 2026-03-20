@@ -350,6 +350,8 @@ GigShield will be delivered as both a **Progressive Web App (PWA)** and a **Reac
 **Worker-facing:** Mobile app (React Native)
 **Admin/Insurer dashboard:** Web app (React + Tailwind)
 
+<img width="1412" height="1248" alt="image" src="https://github.com/user-attachments/assets/7fc42a62-3777-4bf9-8098-db7bf478ba6d" />
+
 ---
 
 ## 10. Tech Stack
