@@ -25,6 +25,7 @@
 11. [USPs & Differentiators](#11-usps--differentiators)
 12. [Development Plan](#12-development-plan)
 13. [Constraints Compliance](#13-constraints-compliance)
+14. [Adversarial Defense & Anti-Spoofing Strategy](#14-Adversarial-Defense-&-Anti-Spoofing-Strategy)
 
 ---
 
@@ -450,7 +451,7 @@ GigShield warns workers 24–48 hours before predicted disruptions, helping them
 
 ---
 
-# 🛡️ Adversarial Defense & Anti-Spoofing Strategy
+# 14. Adversarial Defense & Anti-Spoofing Strategy
 
 > **24-Hour Critical Pivot — March 20, 2026**
 > In response to the threat report of a 500-worker GPS-spoofing syndicate draining a parametric
