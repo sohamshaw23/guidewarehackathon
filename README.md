@@ -1,3 +1,6 @@
+
+<img width="1600" height="397" alt="image" src="https://github.com/user-attachments/assets/35418f4c-87cd-4936-82a3-245a55dca6fb" />
+
 # GigShield — AI-Powered Parametric Income Insurance for Food Delivery Partners
 
 > **Guidewire DEVTrails 2026 | Team Submission — Phase 1**
