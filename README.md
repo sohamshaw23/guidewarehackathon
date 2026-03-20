@@ -125,16 +125,16 @@ No other micro-insurance product in India compensates at this granularity.
 
 ```
 ┌────────────────────────────────────────────────────────────────────┐
-│                        WORKER ONBOARDING                          │
-│  Register → Verify (Phone + Aadhaar lite) → Link Earnings Profile │
-│  → Select Weekly Plan → Enable GPS & Notifications                │
+│                        WORKER ONBOARDING                           │
+│  Register → Verify (Phone + Aadhaar lite) → Link Earnings Profile  │
+│  → Select Weekly Plan → Enable GPS & Notifications                 │
 └───────────────────────────────┬────────────────────────────────────┘
                                 │
 ┌───────────────────────────────▼────────────────────────────────────┐
 │                    WEEKLY POLICY ACTIVATION                        │
 │  AI calculates premium based on: zone risk, weather forecast,      │
 │  worker's disruption history, and Trust Score                      │
-│  → Weekly premium auto-debited (UPI Autopay / wallet)             │
+│  → Weekly premium auto-debited (UPI Autopay / wallet)              │
 └───────────────────────────────┬────────────────────────────────────┘
                                 │
 ┌───────────────────────────────▼────────────────────────────────────┐
@@ -144,29 +144,31 @@ No other micro-insurance product in India compensates at this granularity.
 └───────────────────────────────┬────────────────────────────────────┘
                                 │
               ┌─────────────────▼──────────────────┐
-              │       TRIGGER THRESHOLD MET?        │
-              └────────────┬─────────────┬──────────┘
+              │       TRIGGER THRESHOLD MET?       │
+              └────────────┬─────────────┬─────────┘
                          YES             NO
                            │              │
        ┌───────────────────▼──┐    ┌──────▼──────────────────┐
-       │  FRAUD VALIDATION    │    │  Continue Monitoring     │
-       │  GPS check           │    └──────────────────────────┘
+       │  FRAUD VALIDATION    │    │  Continue Monitoring    │
+       │  GPS check           │    └─────────────────────────┘
        │  Activity anomaly    │
        │  Duplicate check     │
        └───────────┬──────────┘
                    │
        ┌───────────▼──────────────────────────────┐
-       │         INCOME LOSS CALCULATION           │
-       │  Lost hours × Avg hourly earnings         │
-       │  Capped at plan coverage limit            │
+       │         INCOME LOSS CALCULATION          │
+       │  Lost hours × Avg hourly earnings        │
+       │  Capped at plan coverage limit           │
        └───────────┬──────────────────────────────┘
                    │
        ┌───────────▼──────────────────────────────┐
        │           INSTANT UPI PAYOUT             │
-       │  Worker notified + credited automatically │
-       │  Trust Score updated                      │
-       └───────────────────────────────────────────┘
+       │  Worker notified + credited automatically│
+       │  Trust Score updated                     │
+       └──────────────────────────────────────────┘
 ```
+
+<img width="1131" height="1600" alt="image" src="https://github.com/user-attachments/assets/3b518657-f6e0-454e-9901-4e9ac23bbfff" />
 
 ---
 
