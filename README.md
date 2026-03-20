@@ -330,6 +330,8 @@ Since payouts are automatic, fraud detection is critical. GigShield implements a
 - Disruption must be affecting a **minimum threshold of workers in the zone** (e.g., 10+ workers show activity drop)
 - Single-worker claims during a non-zone disruption are auto-rejected
 
+<img width="1570" height="1028" alt="image" src="https://github.com/user-attachments/assets/1b1901b3-6c75-4fcd-8a47-85a7eee2b833" />
+
 ---
 
 ## 9. Platform Choice — Web + Mobile
