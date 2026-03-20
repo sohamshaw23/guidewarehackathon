@@ -382,6 +382,7 @@ GigShield will be delivered as both a **Progressive Web App (PWA)** and a **Reac
 ### Infrastructure
 - **Hosting:** AWS / Vercel (frontend) + Railway / Render (backend)
 - **CI/CD:** GitHub Actions
+<img width="531" height="628" alt="Screenshot 2026-03-20 at 6 32 06 PM" src="https://github.com/user-attachments/assets/dd29fef5-af87-461f-81a1-f849ca68a259" />
 
 ---
 
