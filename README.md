@@ -373,29 +373,29 @@ GigShield will be delivered as both a **Progressive Web App (PWA)** and a **Reac
 
 ## 11. USPs & Differentiators
 
-### ✅ USP 1: Automated Weekly Premium via UPI Autopay
+###  USP 1: Automated Weekly Premium via UPI Autopay
 Workers never forget to renew. Coverage auto-activates every Monday. Industry-standard insurance requires manual renewal — GigShield eliminates this friction entirely for a demographic that is notoriously hard to reach.
 
-### ✅ USP 2: Gig Worker Trust Score
+###  USP 2: Gig Worker Trust Score
 A first-of-its-kind reliability score for gig workers. Consistent premium payers and honest claimants are rewarded with lower premiums — building a loyalty loop that incentivises platform retention.
 
-### ✅ USP 3: Granular Hourly Compensation (Half-Day Coverage)
+###  USP 3: Granular Hourly Compensation (Half-Day Coverage)
 Most parametric products pay for full-day events only. GigShield calculates compensation **per lost hour** — so a 3-hour rainfall disruption pays proportionally, not a binary all-or-nothing.
 
-### ✅ USP 4: Zero-Touch, Zero-Claim Payout
+###  USP 4: Zero-Touch, Zero-Claim Payout
 Workers never file a claim. The disruption is detected, validated, and the payout is credited — all within minutes. Workers are notified by push notification.
 
-### ✅ USP 5: Supply Chain Disruption Coverage
+###  USP 5: Supply Chain Disruption Coverage
 Unique to GigShield — the platform detects systemic supply-side failures (e.g., LPG shortage causing mass restaurant closures) via delivery order density monitoring. No other insurance product covers this.
 
-### ✅ USP 6: Proactive Disruption Alerts
+###  USP 6: Proactive Disruption Alerts
 GigShield warns workers 24–48 hours before predicted disruptions, helping them plan their week. This turns the platform from a passive safety net into an active financial planning tool.
 
 ---
 
 ## 12. Development Plan
 
-### Phase 1 (March 4–20): Ideation & Foundation ✅
+### Phase 1 (March 4–20): Ideation & Foundation 
 - [x] Problem research and persona definition
 - [x] Parametric trigger design and disruption taxonomy
 - [x] Weekly pricing model design
