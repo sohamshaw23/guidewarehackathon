@@ -5,6 +5,9 @@
 
 ---
 
+<img width="1131" height="1600" alt="image" src="https://github.com/user-attachments/assets/4b0e01fc-7f1e-425d-bc17-4ba7b883875c" />
+
+---
 ## 📌 Table of Contents
 
 1. [Problem Statement](#1-problem-statement)
