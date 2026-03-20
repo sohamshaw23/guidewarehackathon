@@ -297,6 +297,8 @@ Using weather forecast APIs and historical disruption data, GigShield will **pro
 
 This improves worker preparedness and trust in the platform.
 
+<img width="1188" height="798" alt="image" src="https://github.com/user-attachments/assets/8f742340-c484-4319-8865-1a356c84810b" />
+
 ---
 
 ## 8. Fraud Detection Architecture
