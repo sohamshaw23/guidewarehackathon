@@ -61,6 +61,8 @@ GigShield is an **AI-powered parametric micro-insurance platform** exclusively d
 - **Working hours:** 10 AM – 10 PM
 - **Insurance plan:** Standard (₹40/week)
 
+<img width="1554" height="970" alt="image" src="https://github.com/user-attachments/assets/3ebfa397-27b2-4bd8-b397-6a50b9c718e0" />
+
 ---
 
 ### Scenario A: Heavy Rainfall Disruption
