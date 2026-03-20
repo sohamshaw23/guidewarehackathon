@@ -1,4 +1,4 @@
-# 🛵 GigShield — AI-Powered Parametric Income Insurance for Food Delivery Partners
+# GigShield — AI-Powered Parametric Income Insurance for Food Delivery Partners
 
 > **Guidewire DEVTrails 2026 | Team Submission — Phase 1**
 > Protecting the livelihoods of Zomato & Swiggy delivery partners from uncontrollable external disruptions.
