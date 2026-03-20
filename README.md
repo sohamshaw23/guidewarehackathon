@@ -439,26 +439,30 @@ GigShield warns workers 24–48 hours before predicted disruptions, helping them
 
 | Constraint | GigShield Compliance |
 |------------|---------------------|
-| No health insurance coverage | ✅ Strictly excluded |
-| No life insurance coverage | ✅ Strictly excluded |
-| No accident/medical bill coverage | ✅ Strictly excluded |
-| No vehicle repair coverage | ✅ Strictly excluded |
-| Weekly pricing model | ✅ All plans priced and structured weekly |
-| Income loss only | ✅ All payouts calculated as lost hourly/daily earnings |
-| Delivery persona focus | ✅ Food delivery partners (Zomato/Swiggy) only |
+| No health insurance coverage |  Strictly excluded |
+| No life insurance coverage |  Strictly excluded |
+| No accident/medical bill coverage |  Strictly excluded |
+| No vehicle repair coverage |  Strictly excluded |
+| Weekly pricing model |  All plans priced and structured weekly |
+| Income loss only |  All payouts calculated as lost hourly/daily earnings |
+| Delivery persona focus |  Food delivery partners (Zomato/Swiggy) only |
 
 ---
 
-## 👥 Team
+##  Team - Vibe Coders
 
-> *(Add team member names, roles, and college here)*
+-  HANNAH IMTIAZ
+-  AYMEN AAMIR
+-  SOHAM SHAW
+-  KARTIKEY MADAAN
+-  DIVVYANSH KUDESIAA
 
 ---
 
-## 📎 Links
+##  Links
 
-- 🎥 Phase 1 Video: *(Add link)*
-- 💻 Repository: *(This repo)*
+-  Phase 1 Video: *(Add link)*
+-  Repository: *(This repo)*
 
 ---
 
