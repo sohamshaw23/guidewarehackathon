@@ -1,21 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Check, Star, Zap, Shield, Crown } from "lucide-react";
+import { Check, Star, Zap, Shield, Crown, Loader2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { NeonButton } from "@/components/ui/NeonButton";
-import { plans } from "@/data/mockData";
+import { plans as mockPlans } from "@/data/mockData";
 import { NeonBadge } from "@/components/ui/NeonBadge";
+import { api } from "@/lib/api";
 
 export const PlanSelection = () => {
   const [activePlan, setActivePlan] = useState<string | null>(null);
+  const [plans, setPlans] = useState<any[]>(mockPlans);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPlans = async () => {
+      try {
+        const livePlans = await api.getPlans();
+        const status = await api.getPolicyStatus();
+        
+        // Map backend plans to frontend structure
+        const mappedPlans = livePlans.map((p: any) => ({
+          ...mockPlans.find(mp => mp.name.toUpperCase() === p.name.toUpperCase()) || mockPlans[0],
+          id: p.id.toString(),
+          name: p.name,
+          price: `₹${parseFloat(p.premium_base).toFixed(0)}/week`,
+          backend_id: p.id
+        }));
+        
+        setPlans(mappedPlans);
+        if (status && status.status === 'active') {
+          setActivePlan(status.plan_id.toString());
+        }
+      } catch (err) {
+        console.error("Failed to load plans:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchPlans();
+  }, []);
+
+  const handleSelectPlan = async (plan: any) => {
+    try {
+      setLoading(true);
+      await api.activatePolicy(parseInt(plan.id));
+      setActivePlan(plan.id);
+      alert(`${plan.name} Plan Activated!`);
+    } catch (err) {
+      alert("Failed to activate plan: " + (err as Error).message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getPlanIcon = (name: string) => {
-    if (name === "PREMIUM") return Crown;
-    if (name === "STANDARD") return Shield;
+    if (name.toUpperCase() === "PREMIUM") return Crown;
+    if (name.toUpperCase() === "STANDARD") return Shield;
     return Zap;
   };
+
+  if (loading && plans.length === 0) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+          <Loader2 className="animate-spin text-neonPurple" size={48} />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col gap-6 p-4 md:p-8 pt-24 pb-24 md:pb-8 max-w-7xl mx-auto min-h-screen">
@@ -33,7 +85,7 @@ export const PlanSelection = () => {
         {plans.map((plan, i) => {
           const Icon = getPlanIcon(plan.name);
           const isSelected = activePlan === plan.id;
-          const cardColor = `neon${plan.color.charAt(0).toUpperCase() + plan.color.slice(1)}`;
+          const cardColor = `neon${(plan.color || 'blue').charAt(0).toUpperCase() + (plan.color || 'blue').slice(1)}`;
 
           return (
             <motion.div
@@ -68,7 +120,7 @@ export const PlanSelection = () => {
 
                 <div className="flex-1 space-y-4 mb-10">
                    <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-6" />
-                   {plan.features.map((feature, j) => (
+                   {(plan.features || []).map((feature: string, j: number) => (
                      <div key={j} className="flex items-center gap-3 text-xs text-textMuted group">
                         <Check size={14} className={`text-${cardColor} shrink-0`} />
                         <span className="group-hover:text-white transition-colors">{feature}</span>
@@ -77,10 +129,10 @@ export const PlanSelection = () => {
                 </div>
 
                 <NeonButton
-                  variant={plan.color as any}
+                  variant={(plan.color || 'blue') as any}
                   size="lg"
                   className="w-full relative overflow-hidden h-14"
-                  onClick={() => setActivePlan(plan.id)}
+                  onClick={() => handleSelectPlan(plan)}
                   glow={isSelected}
                   pulse={plan.recommended}
                 >
@@ -108,7 +160,7 @@ export const PlanSelection = () => {
 
       <div className="mt-12 p-6 glass border-dashed border-white/20 text-center">
          <p className="text-[10px] font-heading text-textMuted tracking-widest leading-loose">
-            *PREMIUM LOCK-IN: FREE FOR 6 MONTHS FOR WORKERS WITH >95 TRUST SCORE. <br/>
+            *PREMIUM LOCK-IN: FREE FOR 6 MONTHS FOR WORKERS WITH &gt;95 TRUST SCORE. <br/>
             ALL PLANS INCLUDE BLOCKCHAIN DISPUTE RESOLUTION.
          </p>
       </div>

@@ -16,7 +16,8 @@ import { NeonBadge } from "@/components/ui/NeonBadge";
 import { ProgressBar } from "@/components/ui/ProgressBar";
 import { NeonToggle } from "@/components/ui/NeonToggle";
 import { PixelIcon } from "@/components/ui/PixelIcon";
-import { worker } from "@/data/mockData";
+import { worker as mockWorker } from "@/data/mockData";
+import { api } from "@/lib/api";
 
 // Count-up component
 const CountUp = ({ value, duration = 2 }: { value: number; duration?: number }) => {
@@ -40,7 +41,43 @@ const CountUp = ({ value, duration = 2 }: { value: number; duration?: number }) 
 };
 
 export const Dashboard = () => {
-  const [shieldActive, setShieldActive] = useState(worker.coverage.active);
+  const [worker, setWorker] = useState<any>(mockWorker);
+  const [shieldActive, setShieldActive] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadData = async () => {
+      try {
+        // For demo, we auto-login with a seed user if not logged in
+        if (!localStorage.getItem('gs_token')) {
+          await api.login('9876543210', 'password123');
+        }
+        
+        const profile = await api.getProfile();
+        const policy = await api.getPolicyStatus();
+        
+        setWorker({
+          ...mockWorker,
+          name: profile.name,
+          phone: profile.phone,
+          trustScore: profile.trust_score,
+          city: 'Mumbai', // Mocked for demo
+          coverage: {
+            active: policy.status === 'active',
+            amount: policy.coverage_limit || 0,
+            plan: policy.plan_name || 'NONE'
+          }
+        });
+        setShieldActive(policy.status === 'active');
+      } catch (err) {
+        console.error("Failed to load live data:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadData();
+  }, []);
 
   return (
     <div className="flex flex-col gap-6 p-4 md:p-8 pt-24 pb-24 md:pb-8 max-w-7xl mx-auto min-h-screen">
@@ -52,7 +89,7 @@ export const Dashboard = () => {
             <div className="relative mb-4 group px-4 py-4">
               <div className="w-24 h-24 rounded-full border-2 border-neonPurple p-1 group-hover:shadow-neonPurple transition-shadow">
                 <img 
-                  src="https://api.dicebear.com/7.x/pixel-art/svg?seed=Ravi" 
+                  src={`https://api.dicebear.com/7.x/pixel-art/svg?seed=${worker.name}`} 
                   alt="Avatar" 
                   className="w-full h-full rounded-full pixelated bg-surface"
                 />
@@ -75,9 +112,9 @@ export const Dashboard = () => {
                <div>
                  <div className="flex justify-between items-baseline mb-2">
                     <span className="text-[9px] font-heading text-textMuted tracking-tight">TRUST SCORE</span>
-                    <span className="text-xl font-heading text-neonGreen shadow-neonGreen">78 <span className="text-xs text-textMuted">/ 100</span></span>
+                    <span className="text-xl font-heading text-neonGreen shadow-neonGreen">{worker.trustScore} <span className="text-xs text-textMuted">/ 100</span></span>
                  </div>
-                 <ProgressBar value={78} max={100} variant="xp" />
+                 <ProgressBar value={worker.trustScore} max={100} variant="xp" />
                </div>
                
                <div className="flex justify-between gap-4 pt-2">
@@ -102,7 +139,7 @@ export const Dashboard = () => {
         <GlassCard delay={0.2} className="md:col-span-1 flex flex-col justify-between overflow-hidden group">
            <div>
               <div className="flex items-center justify-between mb-2">
-                <h3 className="text-[10px] font-heading text-textMuted uppercase">Today's Earnings</h3>
+                <h3 className="text-[10px] font-heading text-textMuted uppercase">Today&apos;s Earnings</h3>
                 <TrendingUp size={16} className="text-neonGreen" />
               </div>
               <div className="flex items-baseline gap-2 mb-4">

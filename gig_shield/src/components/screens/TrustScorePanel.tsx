@@ -1,14 +1,45 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Award, Lock, Shield, Sparkles, Trophy, Zap } from "lucide-react";
+import { Award, Lock, Shield, Sparkles, Trophy, Zap, Loader2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
 import { ProgressBar } from "@/components/ui/ProgressBar";
-import { badges } from "@/data/mockData";
+import { badges as mockBadges, worker as mockWorker } from "@/data/mockData";
 import { NeonBadge } from "@/components/ui/NeonBadge";
 import { NeonButton } from "@/components/ui/NeonButton";
+import { api } from "@/lib/api";
 
 export const TrustScorePanel = () => {
+  const [worker, setWorker] = useState<any>(mockWorker);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadProfile = async () => {
+      try {
+        const profile = await api.getProfile();
+        setWorker({
+          ...mockWorker,
+          name: profile.name,
+          trustScore: profile.trust_score
+        });
+      } catch (err) {
+        console.error("Failed to load profile for TrustScorePanel:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadProfile();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+          <Loader2 className="animate-spin text-neonPurple" size={48} />
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-6 p-4 md:p-8 pt-24 pb-24 md:pb-8 max-w-5xl mx-auto min-h-screen">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center mb-8">
@@ -29,11 +60,11 @@ export const TrustScorePanel = () => {
               
               <div className="text-center relative z-10">
                 <motion.span 
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="block text-6xl md:text-8xl font-heading text-white glow-white mb-2"
+                   initial={{ opacity: 0, scale: 0.5 }}
+                   animate={{ opacity: 1, scale: 1 }}
+                   className="block text-6xl md:text-8xl font-heading text-white glow-white mb-2"
                 >
-                  78
+                  {worker.trustScore}
                 </motion.span>
                 <div className="bg-neonPurple/20 px-3 py-1 border border-neonPurple/50 inline-block">
                   <span className="text-[10px] font-heading text-neonPurple uppercase tracking-tighter">SILVER RANK</span>
@@ -44,11 +75,12 @@ export const TrustScorePanel = () => {
            <div className="w-full max-w-xs mt-8">
               <div className="flex justify-between items-end mb-2">
                  <span className="text-[10px] font-heading text-textMuted uppercase">Goal: 90 (GOLD)</span>
-                 <span className="text-xs font-heading text-neonBlue">12 XP TO GO</span>
+                 <span className="text-xs font-heading text-neonBlue">{90 - worker.trustScore} XP TO GO</span>
               </div>
-              <ProgressBar value={78} max={90} variant="xp" className="h-4" />
+              <ProgressBar value={worker.trustScore} max={90} variant="xp" className="h-4" />
            </div>
         </div>
+...
 
         {/* Perks Section */}
         <GlassCard className="h-full flex flex-col justify-center p-8 bg-surface/40 border-neonBlue/20">
@@ -81,7 +113,7 @@ export const TrustScorePanel = () => {
         </h3>
         
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-           {badges.map((badge) => (
+           {mockBadges.map((badge: any) => (
              <motion.div
                key={badge.id}
                whileHover={badge.unlocked ? { y: -5, scale: 1.05 } : {}}

@@ -1,12 +1,50 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { CheckCircle2, Clock, MapPin, Zap } from "lucide-react";
+import { CheckCircle2, Clock, MapPin, Zap, Loader2 } from "lucide-react";
 import { GlassCard } from "@/components/ui/GlassCard";
-import { disruptionFeed } from "@/data/mockData";
+import { disruptionFeed as mockFeed } from "@/data/mockData";
 import { NeonBadge } from "@/components/ui/NeonBadge";
+import { api } from "@/lib/api";
 
 export const DisruptionFeed = () => {
+  const [feed, setFeed] = useState<any[]>(mockFeed);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchHistory = async () => {
+      try {
+        const history = await api.getPayoutHistory();
+        if (history.length > 0) {
+          const mappedHistory = history.map((h: any) => ({
+            id: h.id,
+            icon: h.disruption_type === 'Rainfall' ? "🌧" : h.disruption_type === 'AQI' ? "😷" : "🚨",
+            event: `${h.disruption_type} in ${h.zone || 'City'}`,
+            amount: `₹${parseFloat(h.amount).toFixed(0)} credited`,
+            time: new Date(h.created_at).toLocaleTimeString(),
+            status: h.status === 'paid' ? 'paid' : 'processing',
+            color: h.disruption_type === 'Rainfall' ? "blue" : h.disruption_type === 'AQI' ? "purple" : "pink"
+          }));
+          setFeed(mappedHistory);
+        }
+      } catch (err) {
+        console.error("Failed to fetch payout history:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchHistory();
+  }, []);
+
+  if (loading && feed.length === 0) {
+      return (
+        <div className="flex items-center justify-center min-h-screen">
+            <Loader2 className="animate-spin text-neonPink" size={48} />
+        </div>
+      );
+  }
+
   return (
     <div className="flex flex-col gap-6 p-4 md:p-8 pt-24 pb-24 md:pb-8 max-w-4xl mx-auto min-h-screen">
       <div className="mb-8">
@@ -23,7 +61,7 @@ export const DisruptionFeed = () => {
 
         {/* Feed Items */}
         <div className="space-y-8 pl-8">
-          {disruptionFeed.map((item, i) => (
+          {feed.map((item, i) => (
             <motion.div
               key={item.id}
               initial={{ opacity: 0, x: -20 }}
